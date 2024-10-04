@@ -1,0 +1,73 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% block content %}
+{% include 'core/nav.html' %}
+<!-- Background Image Styling -->
+<style>
+    body {
+        background-image: url("{% static 'core/img/add_blog.jpg' %}");
+        background-attachment: fixed;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        color: white;
+        font-family: 'Arial', sans-serif;
+    }
+
+    h1 {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 2.5rem;
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        color: #ffffff;
+    }
+
+    form {
+        background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+        border-radius: 15px;
+        padding: 30px;
+        width: 80%;
+        max-width: 600px;
+        margin: 40px auto;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    form button {
+        background-color: #28a745;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 100%;
+        font-size: 1.2rem;
+    }
+
+    form button:hover {
+        background-color: #218838;
+    }
+
+    form input, form textarea {
+        width: 100%;
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+        font-size: 1rem;
+    }
+
+    form input[type="file"] {
+        padding: 5px;
+    }
+</style>
+
+<h1>{% if form.instance.pk %}Edit{% else %}Add{% endif %} Blog Post</h1>
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">{% if form.instance.pk %}Update{% else %}Add{% endif %} Post</button>
+</form>
+
+{% endblock content %}

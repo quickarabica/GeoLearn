@@ -1,0 +1,225 @@
+{% extends 'core/baseformap.html' %}
+{% load static %}
+
+{% block state %}
+West Bengal
+{% endblock state %}
+
+{% block M %}
+
+<style>
+    .fixed-size-image {
+        width: 300px;
+        height: 200px;
+        object-fit: cover; /* Ensures the image covers the area without distortion */
+    }
+    </style>
+<li class="animal-entry">
+    <div class="animal-image">
+        <img src="{% static 'core/img/WB_wild/tiger.jpeg' %}" alt="Royal Bengal Tiger" class="fixed-size-image">
+    </div>
+    <div class="animal-info">
+        Royal Bengal Tiger (<u>Panthera tigris tigris</u>) - Sundarbans
+    </div>
+</li>
+<li class="animal-entry">
+    <div class="animal-image">
+        <img src="{% static 'core/img/WB_wild/Elephant.jpeg' %}" alt="Indian Elephant" class="fixed-size-image">
+    </div>
+    <div class="animal-info">
+        Indian Elephant (<u>Elephas maximus indicus</u>) - Forests of North Bengal, Dooars
+    </div>
+</li>
+<li class="animal-entry">
+    <div class="animal-image">
+        <img src="{% static 'core/img/WB_wild/Indian Rhinoceros.jpg' %}" alt="Indian Rhinoceros" class="fixed-size-image">
+    </div>
+    <div class="animal-info">
+        Indian Rhinoceros (<u>Rhinoceros unicornis</u>) - Jaldapara National Park, Gorumara National Park
+    </div>
+</li>
+<li class="animal-entry">
+    <div class="animal-image">
+        <img src="{% static 'core/img/WB_wild/Leopard.jpeg' %}" alt="Indian Leopard" class="fixed-size-image">
+    </div>
+    <div class="animal-info">
+        Indian Leopard (<u>Panthera pardus fusca</u>) - Forests of North Bengal
+    </div>
+</li>
+<li class="animal-entry">
+    <div class="animal-image">
+        <img src="{% static 'core/img/WB_wild/Indian Bison.jpeg' %}" alt="Gaur" class="fixed-size-image">
+    </div>
+    <div class="animal-info">
+        Gaur (<u>Bos gaurus</u>) - Forests of North Bengal, Dooars
+    </div>
+</li>
+{% endblock M %}
+
+{% block B %}
+<li class="animal-entry">
+    <div class="animal-image">
+        <img src="{% static 'core/img/WB_wild/peacock.jpeg' %}" alt="Indian Peafowl" class="fixed-size-image">
+    </div>
+    <div class="animal-info">
+        Indian Peafowl (<u>Pavo cristatus</u>) - Forest regions
+    </div>
+</li>
+<li class="animal-entry">
+    <div class="animal-image">
+        <img src="{% static 'core/img/WB_wild/Greater Adjutant Stork.jpeg' %}" alt="Greater Adjutant Stork" class="fixed-size-image">
+    </div>
+    <div class="animal-info">
+        Greater Adjutant Stork (<u>Leptoptilos dubius</u>) - Northern Bengal wetlands
+    </div>
+</li>
+<li class="animal-entry">
+    <div class="animal-image">
+        <img src="{% static 'core/img/WB_wild/Oriental Pied Hornbill.jpeg' %}" alt="Great Hornbill" class="fixed-size-image">
+    </div>
+    <div class="animal-info">
+        Great Hornbill (<u>Buceros bicornis</u>) - Forests of North Bengal
+    </div>
+</li>
+<li class="animal-entry">
+    <div class="animal-image">
+        <img src="{% static 'core/img/WB_wild/Kingfisher.jpeg' %}" alt="Common Kingfisher" class="fixed-size-image">
+    </div>
+    <div class="animal-info">
+        Common Kingfisher (<u>Alcedo atthis</u>) - Wetlands and rivers
+    </div>
+</li>
+<li class="animal-entry">
+    <div class="animal-image">
+        <img src="{% static 'core/img/WB_wild/Crested Serpent Eagle.jpeg' %}" alt="Crested Serpent Eagle" class="fixed-size-image">
+    </div>
+    <div class="animal-info">
+        Crested Serpent Eagle (<u>Spilornis cheela</u>) - Forests and hilly regions
+    </div>
+</li>
+{% endblock B %}
+
+{% block R %}
+<li class="animal-entry">
+    <div class="animal-image">
+        <img src="{% static 'core/img/WB_wild/Saltwater Crocodile.jpeg' %}" alt="Saltwater Crocodile" class="fixed-size-image">
+    </div>
+    <div class="animal-info">
+        Saltwater Crocodile (<u>Crocodylus porosus</u>) - Sundarbans
+    </div>
+</li>
+<li class="animal-entry">
+    <div class="animal-image">
+        <img src="{% static 'core/img/WB_wild/King Cobra.jpeg' %}" alt="King Cobra" class="fixed-size-image">
+    </div>
+    <div class="animal-info">
+        King Cobra (<u>Ophiophagus hannah</u>) - Forest regions
+    </div>
+</li>
+<li class="animal-entry">
+    <div class="animal-image">
+        <img src="{% static 'core/img/WB_wild/Monitor Lizard.jpeg' %}" alt="Bengal Monitor Lizard" class="fixed-size-image">
+    </div>
+    <div class="animal-info">
+        Bengal Monitor Lizard (<u>Varanus bengalensis</u>) - Forests and plains
+    </div>
+</li>
+<li class="animal-entry">
+    <div class="animal-image">
+        <img src="{% static 'core/img/WB_wild/Indian Python.jpeg' %}" alt="Indian Python" class="fixed-size-image">
+    </div>
+    <div class="animal-info">
+        Indian Python (<u>Python molurus</u>) - Forests, wetlands
+    </div>
+</li>
+<li class="animal-entry">
+    <div class="animal-image">
+        <img src="{% static 'core/img/WB_wild/Olive Ridley Turtle.jpg' %}" alt="Olive Ridley Turtle" class="fixed-size-image">
+    </div>
+    <div class="animal-info">
+        Olive Ridley Turtle (<u>Lepidochelys olivacea</u>) - Coastal regions
+    </div>
+</li>
+{% endblock R %}
+
+{% block A %}
+<li class="animal-entry">
+    <div class="animal-image">
+        <img src="{% static 'core/img/WB_wild/Indian Bullfrog.jpeg' %}" alt="Indian Bullfrog" class="fixed-size-image">
+    </div>
+    <div class="animal-info">
+        Indian Bullfrog (<u>Hoplobatrachus tigerinus</u>) - Wetlands, ponds, fields
+    </div>
+</li>
+<li class="animal-entry">
+    <div class="animal-image">
+        <img src="{% static 'core/img/WB_wild/Golden Tree Frog.jpeg' %}" alt="Indian Tree Frog" class="fixed-size-image">
+    </div>
+    <div class="animal-info">
+        Indian Tree Frog (<u>Polypedates maculatus</u>) - Forests, gardens
+    </div>
+</li>
+<li class="animal-entry">
+    <div class="animal-image">
+        <img src="{% static 'core/img/WB_wild/Common Indian Toad.jpeg' %}" alt="Common Indian Toad" class="fixed-size-image">
+    </div>
+    <div class="animal-info">
+        Common Indian Toad (<u>Duttaphrynus melanostictus</u>) - Urban areas, forests
+    </div>
+</li>
+<li class="animal-entry">
+    <div class="animal-image">
+        <img src="{% static 'core/img/WB_wild/Himalayan Salamander.jpg' %}" alt="Himalayan Salamander" class="fixed-size-image">
+    </div>
+    <div class="animal-info">
+        Himalayan Salamander (<u>Tylototriton verrucosus</u>) - Eastern Himalayas
+    </div>
+</li>
+{% endblock A %}
+
+{% block AL %}
+<li class="animal-entry">
+    <div class="animal-image">
+        <img src="{% static 'core/img/WB_wild/Gangetic Dolphin.jpeg' %}" alt="Ganges River Dolphin" class="fixed-size-image">
+    </div>
+    <div class="animal-info">
+        Ganges River Dolphin (<u>Platanista gangetica</u>) - Ganges River
+    </div>
+</li>
+<li class="animal-entry">
+    <div class="animal-image">
+        <img src="{% static 'core/img/WB_wild/Golden Mahseer.jpg' %}" alt="Golden Mahseer" class="fixed-size-image">
+    </div>
+    <div class="animal-info">
+        Golden Mahseer (<u>Tor putitora</u>) - Rivers of North Bengal
+    </div>
+</li>
+<li class="animal-entry">
+    <div class="animal-image">
+        <img src="{% static 'core/img/WB_wild/Rohu.png' %}" alt="Rohu" class="fixed-size-image">
+    </div>
+    <div class="animal-info">
+        Rohu (<u>Labeo rohita</u>) - Rivers, ponds
+    </div>
+</li>
+<li class="animal-entry">
+    <div class="animal-image">
+        <img src="{% static 'core/img/WB_wild/Hilsa Fish.jpeg' %}" alt="Hilsa" class="fixed-size-image">
+    </div>
+    <div class="animal-info">
+        Hilsa (<u>Tenualosa ilisha</u>) - Ganges River, estuaries
+    </div>
+</li>
+<li class="animal-entry">
+    <div class="animal-image">
+        <img src="{% static 'core/img/WB_wild/Mangrove Horseshoe Crab.jpg' %}" alt="Mangrove Horseshoe Crab" class="fixed-size-image">
+    </div>
+    <div class="animal-info">
+        Mangrove Horseshoe Crab (<u>Carcinoscorpius rotundicauda</u>) - Sundarbans
+    </div>
+</li>
+{% endblock AL %}
+
+
+
+

@@ -1,0 +1,193 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn About Your Pet!</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("{% static 'core/img/petbackground.jpg' %}") no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            padding: 20px;                      
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            color: #000;
+            margin-bottom: 10px;
+        }
+        h2.subtitle {
+            color: #000;
+            margin-bottom: 20px;
+        }
+        .image-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 100%;
+            max-width: 600px;
+            margin-bottom: 20px;
+        }
+        .image-container img {
+            width: 200px;
+            height: 200px;
+            object-fit: contain;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .image-container img.cat {
+            width: 150px;
+            height: 150px;
+            border-radius: 10px;
+        }
+        .image-container img:hover {
+            transform: scale(1.1);
+        }
+        .details {
+            display: none;
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .breed-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .breed-list li {
+            cursor: pointer;
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #000;
+            color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 15px;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .breed-list li:hover {
+            background-color: #333;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        .breed-info {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+        .breed-info img {
+            max-width: 300px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+        }
+        .breed-info p {
+            margin: 0;
+            font-size: 18px;
+        }
+        .close-btn {
+            align-self: flex-end;
+            cursor: pointer;
+            color: #007bff;
+            font-size: 18px;
+            margin-bottom: 10px;
+            transition: color 0.3s ease;
+        }
+        .close-btn:hover {
+            color: #0056b3;
+        }
+        .button-container {
+            text-align: right; /* Align the button to the right */
+            margin-top: 30px;
+        }
+        .save-button {
+            background-color: #28a745;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        .save-button:hover {
+            background-color: #218838;
+        }
+        
+    </style>
+    <script>
+        function showDetails(animal) {
+            document.getElementById('dog').style.display = 'none';
+            document.getElementById('cat').style.display = 'none';
+            document.getElementById(animal).style.display = 'block';
+        }
+
+        function showBreedInfo(image, breedInfo) {
+            const breedInfoDiv = document.getElementById('breed-info');
+            breedInfoDiv.innerHTML = `<div class="close-btn" onclick="closeBreedInfo()">X</div><img src="{% static 'core/img/' %}${image}" alt="Breed Image"><p>${breedInfo}</p>`;
+            breedInfoDiv.style.display = 'flex';
+            breedInfoDiv.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function closeBreedInfo() {
+            document.getElementById('breed-info').style.display = 'none';
+        }
+        
+    </script>
+</head>
+<body>
+    
+    
+    {% include 'core/nav.html' %}
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var links = document.querySelectorAll(".nav-link");
+            links.forEach(function(link) {
+                if (link.href === window.location.href) {
+                    link.style.display = "none";
+                }
+            });
+        });
+    </script>
+<br><br>
+    <h1>Learn About Your Pet!</h1>
+    <h2 class="subtitle">Choose Your Pet!</h2>
+    <div class="image-container">
+        <img src="{% static 'core/img/dog.jpg' %}" alt="Dog" onclick="showDetails('dog')" class="dog">
+        <img src="{% static 'core/img/cat.jpg' %}" alt="Cat" class="cat" onclick="showDetails('cat')">
+    </div>
+
+    <div id="dog" class="details">
+        <h2>Dog Breeds</h2>
+        <ul class="breed-list">
+            <li onclick="showBreedInfo('labrador.jpg', '<strong>Labrador Retriever:</strong> Friendly, outgoing, and high-spirited companions. They are known for their intelligence and obedience, making them popular family dogs. Labradors also excel in search-and-rescue operations, and as service dogs.')">Labrador Retriever</li>
+            <li onclick="showBreedInfo('german_shepherd.jpg', '<strong>German Shepherd:</strong> Intelligent, capable, and versatile working dogs. Their devotion and courage are unmatched. German Shepherds are often employed as police, service, and guard dogs, and are known for their loyalty and protective nature.')">German Shepherd</li>
+            <li onclick="showBreedInfo('golden_retriever.jpg', '<strong>Golden Retriever:</strong> Intelligent, friendly, and devoted. They are great with children and often serve as therapy dogs due to their calm demeanor and tolerance. Golden Retrievers are also known for their playful and energetic nature.')">Golden Retriever</li>
+            <li onclick="showBreedInfo('bulldog.jpg', '<strong>Bulldog:</strong> Courageous, calm, and friendly. Bulldogs are known for their distinct appearance with loose, saggy skin and a pushed-in nose. They are gentle companions, making them ideal pets for apartment living.')">Bulldog</li>
+            <li onclick="showBreedInfo('beagle.jpg', '<strong>Beagle:</strong> Curious, merry, and friendly. Beagles have a strong tracking instinct and are known for their great sense of smell. They are playful, affectionate, and make great family pets, though they can be a bit stubborn.')">Beagle</li>
+        </ul>
+    </div>
+
+    <div id="cat" class="details">
+        <h2>Cat Breeds</h2>
+        <ul class="breed-list">
+            <li onclick="showBreedInfo('persian.jpg', '<strong>Persian:</strong> Quiet, affectionate, and good-natured. Known for their long, flowing coats, Persians require regular grooming. They prefer a calm environment and are known for their sweet personalities.')">Persian</li>
+            <li onclick="showBreedInfo('siamese.jpg', '<strong>Siamese:</strong> Social, affectionate, and vocal. Siamese cats are recognized by their slender bodies, blue almond-shaped eyes, and large ears. They are highly interactive and form strong bonds with their owners.')">Siamese</li>
+            <li onclick="showBreedInfo('maine_coon.jpg', '<strong>Maine Coon:</strong> Gentle, friendly, and good with children. Maine Coons are known for their large size and thick, water-repellent fur. They are playful and enjoy being part of the family.')">Maine Coon</li>
+            <li onclick="showBreedInfo('ragdoll.jpg', '<strong>Ragdoll:</strong> Laid-back, affectionate, and easy-going. Ragdolls are known for their soft, semi-long coats and captivating blue eyes. They are often described as \'puppy-like\' due to their tendency to follow their owners around.')">Ragdoll</li>
+            <li onclick="showBreedInfo('bengal.jpg', '<strong>Bengal:</strong> Active, playful, and curious. Bengals have a wild appearance with distinctive leopard-like spots. They are energetic and enjoy interactive activities, making them fun and engaging pets.')">Bengal</li>
+        </ul>
+    </div>
+
+    <div id="breed-info" class="breed-info"></div>
+</body>
+</html>

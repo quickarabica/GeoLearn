@@ -1,0 +1,187 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<style>
+    /* General Styles */
+    body {
+        font-family: Arial, sans-serif;
+        color: #333;
+        margin: 0;
+        padding-top: 140px; /* Adjusted padding to account for navbar position */
+    }
+
+    h1 {
+        font-size: 2.5em;
+        color: #000000;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    form {
+        background-color: rgba(0, 0, 0, 0.7); /* Black background with 70% opacity */
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 900px;
+        margin: 0 auto 20px auto;
+        color: white; /* Ensure text color contrasts well with the dark background */
+    }
+
+    label {
+        font-size: 1.2em;
+        margin-bottom: 10px;
+        display: block;
+        color: #ccc; /* Light grey label text */
+    }
+
+    input[type="number"] {
+        width: 60px;
+        padding: 5px;
+        margin-right: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 1em;
+        color: #fff; /* White input text */
+        background-color: rgba(255, 255, 255, 0.1); /* Slightly transparent background for inputs */
+    }
+
+    input[type="radio"] + label {
+        color: #fff; /* White label text for radio buttons */
+    }
+
+    button {
+        background-color: #4A90E2;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 1.1em;
+        transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+        background-color: #357ABD;
+    }
+
+    h3 {
+        font-size: 1.5em;
+        margin-bottom: 10px;
+        color: #ddd; /* Light grey color for better contrast */
+    }
+
+    .question-container {
+        margin-bottom: 30px;
+        padding: 15px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .question-container:last-child {
+        border-bottom: none;
+    }
+
+    .answer-container {
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+    }
+
+    input[type="radio"] {
+        margin-right: 10px;
+        margin-top: 0; /* Aligns the radio button with the label text */
+    }
+
+    /* Background Image */
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: -1;
+    }
+
+    /* Ensure navbar stays at the top and doesn't clash with the form */
+    nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000; /* High z-index to stay on top */
+        background-color: rgba(0, 0, 0, 0.9);
+    }
+
+    .nav-link {
+        color: white;
+        text-decoration: none;
+        font-size: 18px;
+        position: relative;
+        display: inline-block;
+        transition: color 0.3s ease, padding-bottom 0.3s ease;
+    }
+
+    .nav-link::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 2px;
+        background-color: green;
+        transform: scaleX(0);
+        transition: transform 0.3s ease;
+        transform-origin: bottom right;
+    }
+
+    .nav-link:hover {
+        color: rgb(0, 161, 0);
+        padding-bottom: 6px; /* Increase padding to create space for the underline */
+    }
+
+    .nav-link:hover::after {
+        transform: scaleX(1);
+        transform-origin: bottom left;
+    }
+</style>
+
+<img src="{% static 'core/img/q1.avif' %}" alt="Background Image">
+
+{% include 'core/nav.html' %}
+
+
+
+<form method="GET" action="{% url 'quiz_list' %}">
+    <h1 class="quiz-header">Quiz Time!</h1>
+    <label for="num_questions">Number of Questions:</label>
+    <input type="number" id="num_questions" name="num_questions" min="1" >
+    <button type="submit">Update Quiz</button>
+</form>
+
+<style>
+    .quiz-header {
+        color: white;
+        font-weight: bold;
+    }
+</style>
+
+<form method="post" action="{% url 'quiz_submit' quiz.id %}">
+    {% csrf_token %}
+    {% for question in quiz.questions.all %}
+    <div class="question-container">
+        
+        <h3>{{ question.text }}</h3>
+        {% for answer in question.answers.all %}
+        <div class="answer-container">
+            <input type="radio" id="answer_{{ answer.id }}" name="question_{{ question.id }}" value="{{ answer.id }}">
+            <label for="answer_{{ answer.id }}">{{ answer.text }}</label>
+        </div>
+        {% endfor %}
+    </div>
+    {% endfor %}
+    <button type="submit">Submit</button>
+</form>
+
+{% endblock content %}
