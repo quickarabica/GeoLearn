@@ -1,0 +1,240 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Save Aquatic Wildlife</title>
+    <!-- Link to Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            filter: brightness(50%);
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+            padding: 20px;
+            margin: 0 auto;
+            max-width: 1200px;
+        }
+
+        h1 {
+            color: #fff;
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            font-size: 2.5em;
+        }
+
+        h2 {
+            color: #fff;
+            margin-top: 30px;
+            font-weight: 700;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+            font-size: 1.8em;
+        }
+
+        .white-text {
+            color: #fff;
+        }
+
+        .black-text {
+            color: #333;
+        }
+
+        p {
+            margin-bottom: 20px;
+            font-size: 1.1em;
+        }
+
+        .ideas, .activities {
+            margin-top: 30px;
+        }
+
+        .ideas ul, .activities ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+
+        .ideas li, .activities li {
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .activity-card {
+            background-color: rgba(247, 247, 247, 0.6);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            transition: transform 0.3s ease, filter 0.3s ease;
+        }
+
+        .activity-card h3 {
+            color: #00695c;
+            margin-bottom: 10px;
+            font-size: 1.5em;
+        }
+
+        .activity-card p {
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .activity-card a {
+            text-decoration: none;
+            color: #00796b;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .activity-card a:hover {
+            color: #004d40;
+        }
+
+        .activity-card img {
+            vertical-align: middle;
+            margin-right: 5px;
+        }
+
+        /* Hover effect for activity cards */
+        .activity-card:hover {
+            transform: scale(1.05);
+            z-index: 2;
+            filter: brightness(1.2);
+        }
+
+        /* Blur effect on non-hovered cards */
+        .activities:hover .activity-card:not(:hover) {
+            filter: blur(5px);
+            transform: none;
+        }
+
+        /* Button styling */
+        .button-container {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .save-button {
+            background-color: #00796b; /* Teal background color */
+            color: #fff; /* White text color */
+            border: none;
+            border-radius: 5px; /* Rounded corners */
+            padding: 12px 24px; /* Spacing inside the button */
+            font-size: 1.2em; /* Slightly larger font size */
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .save-button:hover {
+            background-color: #004d40; /* Darker teal color on hover */
+            transform: scale(1.05); /* Slightly enlarge the button */
+        }
+
+        .save-button:focus {
+            outline: none; /* Remove the default outline on focus */
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Add a subtle shadow */
+        }
+    </style>
+</head>
+<body>
+    {% include 'core/nav.html' %}
+    <video class="video-background" autoplay loop muted>
+        <source src="{% static 'core/img/videoplayback.mp4' %}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+<br><br>
+    <div class="content">
+        <h1 class="white-text">Innovative Ways to Save Aquatic Wildlife</h1>
+        <p class="white-text">Protecting aquatic wildlife is crucial for maintaining the balance of our ecosystems. Here are some innovative methods that can help save aquatic life and ensure a sustainable environment for future generations.</p>
+
+        <div class="ideas white-text">
+            <h2>Innovative Ideas</h2>
+            <ul>
+                <li><strong>Marine Protected Areas (MPAs):</strong> Establishing MPAs where human activity is limited helps preserve biodiversity, protect habitats, and allow ecosystems to recover.</li>
+                <li><strong>Coral Reef Restoration:</strong> Utilizing techniques like coral gardening and artificial reefs to rebuild damaged coral ecosystems, which are vital for marine life.</li>
+                <li><strong>Plastic Waste Reduction:</strong> Implementing and supporting initiatives that reduce plastic pollution, such as banning single-use plastics, promoting biodegradable materials, and organizing beach cleanups.</li>
+                <li><strong>Water Quality Monitoring:</strong> Using technology to monitor and improve water quality in oceans, rivers, and lakes, ensuring a healthy environment for aquatic species.</li>
+                <li><strong>Sustainable Fishing Practices:</strong> Encouraging sustainable fishing by using selective gear, avoiding overfishing, and supporting policies that protect endangered species.</li>
+                <li><strong>Education and Awareness:</strong> Raising awareness about the importance of aquatic ecosystems through educational programs, community outreach, and social media campaigns.</li>
+            </ul>
+        </div>
+
+        <div class="activities black-text">
+            <h2>Get Involved: Activities to Spread Awareness</h2>
+            <div class="activity-card">
+                <h3>1. Host a Beach Cleanup</h3>
+                <p>Organize a beach cleanup in your community to remove plastic waste and other pollutants that harm marine life. Engage local volunteers, and share the event on social media to raise awareness.</p>
+                <a href="https://oceanconservancy.org/trash-free-seas/international-coastal-cleanup/" target="_blank">Learn More</a>
+            </div>
+            
+            <div class="activity-card">
+                <h3>2. Create Educational Content</h3>
+                <p>Develop and share educational videos, blog posts, or infographics about the importance of saving aquatic wildlife. Use platforms like YouTube, Instagram, and Twitter to reach a wider audience.</p>
+                <div>
+                    <p><strong>Choose a platform to start creating:</strong></p>
+                    <a href="https://www.youtube.com/account" target="_blank">
+                        <img src="{% static 'core/img/youtube-icon.jpg' %}" alt="YouTube Icon" width="24" height="24"> YouTube
+                    </a> |
+                    <a href="https://www.instagram.com/accounts/login/?hl=en" target="_blank">
+                        <img src="{% static 'core/img/instagram-icon.jpg' %}" alt="Instagram Icon" width="24" height="24"> Instagram
+                    </a> |
+                    <a href="https://x.com/i/flow/login?input_flow_data=%7B%22requested_variant%22%3A%22eyJteCI6IjIifQ%3D%3D%22%7D" target="_blank">
+                        <img src="{% static 'core/img/twitter-icon.jpg' %}" alt="Twitter Icon" width="24" height="24"> Twitter
+                    </a>
+                </div>
+            </div>
+
+            <div class="activity-card">
+                <h3>3. Support Conservation Projects</h3>
+                <p>Donate to or volunteer with organizations that are dedicated to conserving aquatic ecosystems. Your contributions can help fund research, restoration projects, and advocacy efforts.</p>
+                <div>
+                    <p><strong>Choose a project to support:</strong></p>
+                    <a href="https://www.worldwildlife.org/initiatives/oceans" target="_blank">
+                        Project 1: WWF Oceans Conservation
+                    </a> |
+                    <a href="https://www.wcs.org/our-work/marine-program" target="_blank">
+                        Project 2: WCS Marine Program
+                    </a>
+                </div>
+            </div>
+            
+            <div class="activity-card">
+                <h3>4. Participate in Citizen Science</h3>
+                <p>Join citizen science programs that monitor aquatic wildlife and contribute to important research. Collect data on water quality, species populations, and habitat conditions.</p>
+                <a href="#">Get Involved</a>
+            </div>
+
+            <div class="activity-card">
+                <h3>5. Advocate for Policy Change</h3>
+                <p>Get involved in advocacy efforts to push for stronger environmental policies that protect aquatic wildlife. Write to your local representatives, participate in campaigns, and spread the word.</p>
+                <a href="#">Take Action</a>
+            </div>
+        </div>
+        <div class="button-container">
+            <button class="save-button" onclick="window.location.href='{% url 'tank' %}'">Build Tank</button>
+        </div>
+    </div>
+</body>
+</html> 

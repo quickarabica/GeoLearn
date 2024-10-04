@@ -1,0 +1,170 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% block content %}
+{% include 'core/nav.html' %}
+
+<img src="{% static 'core/img/signup.jpg' %}" alt="Background Image" 
+style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; z-index: -1;">
+
+<!-- Content on top of the image -->
+<div class="signup-container">
+    <h3>Sign Up</h3>
+
+    <form action="" method="post" novalidate>
+        {% csrf_token %}
+        {% for fm in form %}
+        <div class="form-group">
+            {{ fm.label_tag }} {{ fm }} 
+            <small class="text-danger">{{ fm.errors|striptags }}</small>
+        </div>
+        {% endfor %}
+
+        <!-- Add a checkbox to toggle password visibility -->
+        <div class="form-check">
+            <input type="checkbox" id="show_password" onclick="togglePasswordVisibility()"> Show Password
+        </div>
+
+        <button type="submit" class="btn btn-primary">Sign Up</button>
+        
+        {% if form.non_field_errors %}
+        <script>
+            // Display the error modal if there's an error
+            var errorModal = new bootstrap.Modal(document.getElementById('errorModal'), {
+                keyboard: false
+            });
+            errorModal.show();
+        </script>
+        {% endif %}
+    </form>
+</div>
+
+<!-- Error Modal -->
+<div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="errorModalLabel">Error</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        {{ error }}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+    function togglePasswordVisibility() {
+        const passwordFields = document.querySelectorAll('input[type="password"]');
+        passwordFields.forEach(field => {
+            field.type = field.type === "password" ? "text" : "password";
+        });
+    }
+</script>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+    body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden; /* Ensure no scrollbars */
+    }
+
+    .signup-container {
+        background-color: rgba(255, 255, 255, 0.8);
+        padding: 30px;
+        border-radius: 15px;
+        position: relative;
+        z-index: 3;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: auto;
+        width: 50%;
+        max-width: 500px;
+        margin: 100px auto; /* Adjust margin to separate from the navbar */
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        font-family: 'Poppins', sans-serif;
+        text-align: center;
+        overflow: auto; /* Allow scrolling if content overflows */
+    }
+
+    .signup-container h3 {
+        font-size: 28px;
+        color: #333;
+        margin-bottom: 15px;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+        width: 100%;
+    }
+
+    .form-group label {
+        font-weight: 600;
+        color: #555;
+    }
+
+    .form-group input {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        transition: border-color 0.3s ease-in-out;
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-group input:focus {
+        border-color: #007bff;
+        outline: none;
+    }
+
+    .btn-primary {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        background-color: #007bff;
+        border: none;
+        border-radius: 5px;
+        color: #fff;
+        cursor: pointer;
+        transition: background-color 0.3s ease-in-out;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+    .form-check {
+        margin-bottom: 15px;
+        text-align: left;
+        width: 100%;
+    }
+
+    /* Ensure the container fits within the viewport on smaller screens */
+    @media (max-height: 800px) {
+        .signup-container {
+            margin: 50px auto;
+            padding: 20px;
+        }
+
+        .signup-container h3 {
+            font-size: 24px;
+        }
+
+        .btn-primary {
+            padding: 8px;
+            font-size: 14px;
+        }
+    }
+</style>
+
+{% endblock content %}

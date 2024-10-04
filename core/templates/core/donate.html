@@ -1,0 +1,80 @@
+{% extends "core/base.html" %}
+{% load static %}
+
+{% block content %}
+{% include 'core/nav.html' %}
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        color: #fff;
+        background-image: url("{% static 'core/img/blog.jpg' %}"); /* Sticky background image */
+        background-size: cover;
+        background-attachment: fixed;
+    }
+    .container {
+        max-width: 800px;
+        margin: 40px auto;
+        padding: 20px;
+        text-align: center;
+        background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background for readability */
+        border-radius: 8px;
+    }
+    h1 {
+        font-size: 2.5em;
+        margin-bottom: 20px;
+    }
+    p {
+        font-size: 1.2em;
+        margin-bottom: 30px;
+    }
+    .donation-options {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    .qr-code {
+        margin-bottom: 20px;
+    }
+    .qr-code img {
+        width: 200px; /* Adjust QR code size */
+        height: 250px;
+        border-radius: 20px;
+    }
+    .upi-id {
+        font-size: 1.2em;
+        margin-bottom: 30px;
+    }
+    .donation-links a {
+        display: inline-block;
+        padding: 10px 20px;
+        margin: 10px;
+        text-decoration: none;
+        color: #fff;
+        background-color: #0070ba; /* PayPal blue */
+        border-radius: 5px;
+        font-size: 1.1em;
+        transition: background-color 0.3s;
+    }
+    .donation-links a:hover {
+        background-color: #005a9e; /* Darker shade for hover */
+    }
+</style>
+<div class="container">
+    <h1>Support Our Wildlife Conservation Efforts</h1>
+    <p>Your donation helps us protect wildlife and their habitats.</p>
+    
+    <div class="donation-options">
+        <div class="qr-code">
+            <img src="{% static 'core/img/qr.jpg' %}" alt="QR Code">
+        </div>
+        
+        <div class="donation-links">
+            <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=nilanjandolai2003@gmail.com&item_name=Donation&currency_code=USD" target="_blank">Donate with PayPal</a>
+            <a href="https://rzp.io/l/your-payment-link" target="_blank">Donate with Razorpay</a>
+        </div>
+    </div>
+</div>
+{% endblock content %}

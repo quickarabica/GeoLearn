@@ -1,0 +1,127 @@
+{% extends "core/base.html" %}
+{% load static %}
+
+{% block content %}
+{% include 'core/nav.html' %}
+
+<!-- Background Image Styling -->
+<style>
+    body {
+        background-image: url("{% static 'core/img/blog.jpg' %}");
+        background-attachment: fixed;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        color: white;
+        font-family: Arial, sans-serif;
+    }
+
+    h1 {
+        text-align: center;
+        margin-bottom: 40px;
+        font-size: 3rem;
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Form Styling */
+    form {
+        background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+        border-radius: 15px;
+        padding: 30px;
+        margin: 20px auto;
+        width: 70%; /* Wider form */
+        max-width: 900px; /* Increase maximum width */
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    form:hover {
+        transform: scale(1.02);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+    }
+
+    input[type="file"] {
+        margin: 20px 0;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+        background-color: #fff;
+        color: #333;
+    }
+
+    button {
+        background-color: #007bff;
+        color: white;
+        padding: 12px 24px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        font-size: 1rem;
+        margin: 10px;
+    }
+
+    button:hover {
+        background-color: #0056b3;
+        transform: scale(1.05);
+    }
+
+    h2 {
+        text-align: center;
+        margin-top: 40px;
+    }
+
+    img {
+        display: block;
+        margin: 20px auto;
+        max-width: 80%;
+        border-radius: 10px;
+    }
+</style>
+<br><br><br><br>
+<h1>Upload Image or Video for Animal Detection</h1>
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" name="file" required>
+    <button type="submit">Upload</button>
+</form>
+
+{% if output %}
+    <h2>Detected Output:</h2>
+    {% if output|length == 1 %}
+        <!-- Display image -->
+        <img src="data:image/jpeg;base64,{{ output }}" alt="Detected Image">
+    {% else %}
+        <!-- Display video frames as slideshow -->
+        <div id="video">
+            {% for frame in output %}
+                <img src="data:image/jpeg;base64,{{ frame }}" alt="Video Frame" style="display:none;">
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endif %}
+
+<script>
+    // Simple JavaScript to loop through video frames if it's a video
+    const videoContainer = document.getElementById('video');
+    const frames = videoContainer ? videoContainer.querySelectorAll('img') : [];
+    let currentFrame = 0;
+
+    function showNextFrame() {
+        if (frames.length > 1) {
+            frames[currentFrame].style.display = 'none';
+            currentFrame = (currentFrame + 1) % frames.length;
+            frames[currentFrame].style.display = 'block';
+        }
+    }
+
+    if (frames.length > 0) {
+        setInterval(showNextFrame, 100);  // Adjust the interval for smoother or faster playback
+    }
+</script>
+
+{% endblock content %}

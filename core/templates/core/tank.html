@@ -1,0 +1,219 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Build Your Fish Tank</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #00284d;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+        .option {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        .option img {
+            max-width: 300px;
+            width: 100%;
+            border: 2px solid #007bff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+        .option img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(0, 123, 255, 0.5);
+        }
+        .details {
+            display: none;
+            margin-top: 20px;
+        }
+        h2 {
+            color: #007bff;
+        }
+        .fish-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .fish-list li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            transition: 0.3s ease;
+        }
+        .fish-list li:hover {
+            background-color: #f1f1f1;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .fish-list img {
+            width: 150px;
+            border-radius: 10px;
+            margin-right: 20px;
+            cursor: pointer;
+        }
+        .fish-list strong {
+            font-size: 1.1em;
+            color: #007bff;
+            margin-right: 15px;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        .modal.show {
+            display: block;
+            opacity: 1;
+        }
+        .modal-content {
+            margin: 10% auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            max-width: 800px;
+            width: 80%;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            animation: modalFadeIn 0.5s ease;
+        }
+        .modal-content img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        .close {
+            font-size: 28px;
+            font-weight: bold;
+            color: #aaa;
+            float: right;
+            cursor: pointer;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .close:hover {
+            color: black;
+        }
+        @keyframes modalFadeIn {
+            from {
+                transform: scale(0.9);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        .back-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #00796b;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+        }
+        .back-button:hover {
+            background-color: #004d40;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <button class="back-button" onclick="goBack()">&#8592; Previous Page</button>
+
+        <h1>Build Your Fish Tank</h1>
+        <p>Select the type of fish tank you want to build. Choose between Saltwater fish tank or Freshwater fish tank:</p>
+        <div class="option">
+            <img src="{% static 'core/img/Saltwater_Tank_Image.jpg' %}" alt="Saltwater Fish Tank" onclick="showDetails('saltwater')">
+            <img src="{% static 'core/img/Freshwater_Tank_Image.jpg' %}" alt="Freshwater Fish Tank" onclick="showDetails('freshwater')">
+        </div>
+
+        <div id="saltwater" class="details">
+            <h2>Saltwater Fish Tank</h2>
+            <p>Saltwater tanks are ideal for keeping marine fish and corals. Below are some fish that thrive in saltwater conditions:</p>
+            <ul class="fish-list">
+                <li><img src="{% static 'core/img/Clownfish.jpg' %}" alt="Clownfish" onclick="openModal('{% static 'core/img/Clownfish.jpg' %}')"> <strong>Clownfish:</strong> A popular choice for saltwater tanks, known for their bright colors.</li>
+                <li><img src="{% static 'core/img/Blue_Tang.jpg' %}" alt="Blue Tang" onclick="openModal('{% static 'core/img/Blue_Tang.jpg' %}')"> <strong>Blue Tang:</strong> A vibrant blue fish that adds beauty to any tank.</li>
+                <li><img src="{% static 'core/img/Yellow_Tang.jpg' %}" alt="Yellow Tang" onclick="openModal('{% static 'core/img/Yellow_Tang.jpg' %}')"> <strong>Yellow Tang:</strong> Known for its striking yellow color and active nature.</li>
+                <li><img src="{% static 'core/img/Mandarinfish.jpg' %}" alt="Mandarinfish" onclick="openModal('{% static 'core/img/Mandarinfish.jpg' %}')"> <strong>Mandarinfish:</strong> Known for its vibrant patterns and unique appearance.</li>
+                <li><img src="{% static 'core/img/Royal_Gramma.jpg' %}" alt="Royal Gramma" onclick="openModal('{% static 'core/img/Royal_Gramma.jpg' %}')"> <strong>Royal Gramma:</strong> A small fish with bright purple and yellow coloration.</li>
+            </ul>
+        </div>
+
+        <div id="freshwater" class="details">
+            <h2>Freshwater Fish Tank</h2>
+            <p>Freshwater tanks are easier to maintain and are perfect for beginners. Here are some fish that thrive in freshwater conditions:</p>
+            <ul class="fish-list">
+                <li><img src="{% static 'core/img/Betta_Fish.jpg' %}" alt="Betta Fish" onclick="openModal('{% static 'core/img/Betta_Fish.jpg' %}')"> <strong>Betta Fish:</strong> Known for their colorful fins and relatively easy care.</li>
+                <li><img src="{% static 'core/img/Neon_Tetra.jpg' %}" alt="Neon Tetra" onclick="openModal('{% static 'core/img/Neon_Tetra.jpg' %}')"> <strong>Neon Tetra:</strong> Small, colorful fish that are perfect for community tanks.</li>
+                <li><img src="{% static 'core/img/Guppy.jpg' %}" alt="Guppy" onclick="openModal('{% static 'core/img/Guppy.jpg' %}')"> <strong>Guppy:</strong> Hardy fish with a wide range of colors and patterns.</li>
+                <li><img src="{% static 'core/img/Corydoras.jpg' %}" alt="Corydoras" onclick="openModal('{% static 'core/img/Corydoras.jpg' %}')"> <strong>Corydoras:</strong> Small, bottom-dwelling fish known for their peaceful nature.</li>
+                <li><img src="{% static 'core/img/Swordtail.jpg' %}" alt="Swordtail" onclick="openModal('{% static 'core/img/Swordtail.jpg' %}')"> <strong>Swordtail:</strong> Recognizable by its long, sword-like tail and vibrant colors.</li>
+            </ul>
+        </div>
+
+    </div>
+
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <img id="modalImage" src="" alt="Fish Image">
+        </div>
+    </div>
+
+    <script>
+        function showDetails(type) {
+            document.querySelectorAll('.details').forEach(function(detail) {
+                detail.style.display = 'none';
+            });
+            document.getElementById(type).style.display = 'block';
+        }
+
+        function openModal(imageSrc) {
+            document.getElementById("modalImage").src = imageSrc;
+            document.getElementById("myModal").classList.add("show");
+        }
+
+        function closeModal() {
+            document.getElementById("myModal").classList.remove("show");
+        }
+
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html> 

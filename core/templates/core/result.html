@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Detection Results</title>
+</head>
+<body>
+    <h1>Detection Results</h1>
+
+    <h2>Identified Objects:</h2>
+    <ul>
+        {% for obj in identified_objects %}
+        <li>{{ obj.class_name }} (Confidence: {{ obj.confidence }})</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Processed Image:</h2>
+    <img src="/{{ output_image_path }}" alt="Processed Image">
+
+    <br>
+    <a href="{% url 'upload' %}">Upload Another Image</a>
+</body>
+</html>

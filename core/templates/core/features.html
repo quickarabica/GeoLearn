@@ -1,0 +1,110 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+{% include 'core/nav.html' %}
+<style>
+.feature-box {
+    background-color: rgba(0, 0, 0, 0.8); /* Increased alpha value for less transparency */
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin: 20px;
+    padding: 30px;
+    width: 28%;
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-align: center;
+}
+
+.feature-box:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 4.3);
+}
+
+.feature-icon {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 20px;
+}
+
+.feature-link {
+    text-decoration: none;
+    color: white;
+}
+
+.feature-link h2 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+.feature-link p {
+    font-size: 1.2rem;
+}
+</style>
+
+<div style="position: relative; min-height: 100vh; text-align: center; color: white;">
+
+    <!-- Background Image -->
+    <video autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; z-index: -1;">
+        <source src="{% static 'core/img/f1.mp4' %}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Features Section -->
+    <section style="padding: 100px 0;">
+        <h1 style="font-size: 3rem; margin-bottom: 50px;">Website Features</h1>
+        
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-around; align-items: center;">
+
+            <!-- Feature Block -->
+            <div class="feature-box">
+                <a href="{% url 'map' %}" class="feature-link">
+                    <img src="{% static 'core/img/encyclopedia.png' %}" alt="Encyclopedia" class="feature-icon">
+                    <h2>Encyclopedia</h2>
+                    <p>Explore a vast collection of wildlife knowledge.</p>
+                </a>
+            </div>
+
+            <div class="feature-box">
+                <a href="#" class="feature-link">
+                    <img src="{% static 'core/img/image_recog.jpg' %}" alt="Image Recognition" class="feature-icon">
+                    <h2>Image Recognition</h2>
+                    <p>Identify wildlife using our advanced image recognition tool.</p>
+                </a>
+            </div>
+
+            <div class="feature-box">
+                <a href="/#events" class="feature-link">
+                    <img src="{% static 'core/img/events.png' %}" alt="Events" class="feature-icon">
+                    <h2>Events</h2>
+                    <p>Join our events to support wildlife conservation.</p>
+                </a>
+            </div>
+
+            <div class="feature-box">
+                <a href="{% url 'donate' %}" class="feature-link">
+                    <img src="{% static 'core/img/donation.png' %}" alt="Donate" class="feature-icon">
+                    <h2>Donate</h2>
+                    <p>Contribute to wildlife protection efforts.</p>
+                </a>
+            </div>
+
+            <div class="feature-box">
+                <a href="{% url 'quiz_list' %}" class="feature-link">
+                    <img src="{% static 'core/img/trophy.png' %}" alt="EcoTrivia" class="feature-icon">
+                    <h2>EcoTrivia</h2>
+                    <p>Test your knowledge with our EcoTrivia quiz.</p>
+                </a>
+            </div>
+
+            <div class="feature-box">
+                <a href="{% url 'blog' %}" class="feature-link">
+                    <img src="{% static 'core/img/blog.png' %}" alt="Blog" class="feature-icon">
+                    <h2>Blog</h2>
+                    <p>Read our latest articles and stories.</p>
+                </a>
+            </div>
+
+        </div>
+    </section>
+</div>
+{% endblock content %}

@@ -1,0 +1,174 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map of India</title>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', { 'packages': ['geochart'] });
+        google.charts.setOnLoadCallback(drawVisualization);
+
+        function drawVisualization() {
+            var data = google.visualization.arrayToDataTable([
+                ['State Code', 'State', 'Value'],
+                ['IN-AP', "Andhra Pradesh", 1],
+                ['IN-AR', "Arunachal Pradesh", 2],
+                ['IN-AS', "Assam", 3],
+                ['IN-BR', "Bihar", 4],
+                ['IN-CT', "Chhattisgarh", 5],
+                ['IN-GA', "Goa", 6],
+                ['IN-GJ', "Gujarat", 7],
+                ['IN-HR', "Haryana", 8],
+                ['IN-HP', "Himachal Pradesh", 9],
+                ['IN-JH', "Jharkhand", 10],
+                ['IN-KA', "Karnataka", 11],
+                ['IN-KL', "Kerala", 12],
+                ['IN-MP', "Madhya Pradesh", 13],
+                ['IN-MH', "Maharashtra", 14],
+                ['IN-MN', "Manipur", 15],
+                ['IN-ML', "Meghalaya", 16],
+                ['IN-MZ', "Mizoram", 17],
+                ['IN-NL', "Nagaland", 18],
+                ['IN-OR', "Odisha", 19],
+                ['IN-PB', "Punjab", 20],
+                ['IN-RJ', "Rajasthan", 21],
+                ['IN-SK', "Sikkim", 22],
+                ['IN-TN', "Tamil Nadu", 23],
+                ['IN-TG', "Telangana", 24],
+                ['IN-TR', "Tripura", 25],
+                ['IN-UP', "Uttar Pradesh", 26],
+                ['IN-UT', "Uttarakhand", 27],
+                ['IN-WB', "West Bengal", 28],
+                ['IN-AN', "Andaman and Nicobar Islands", 29],
+                ['IN-CH', "Chandigarh", 30],
+                ['IN-DN', "Dadra and Nagar Haveli and Daman and Diu", 31],
+                ['IN-LD', "Lakshadweep", 32],
+                ['IN-PY', "Puducherry", 33],
+                ['IN-JK', "Jammu and Kashmir", 34],
+                ['IN-DL', "Delhi", 35],
+                ['IN-LA', "Ladakh", 36]
+            ]);
+
+            var options = {
+                region: 'IN',
+                displayMode: 'regions',
+                colorAxis: {
+                    colors: ['#003366', '#ffeb3b', '#ff9800', '#f44336', '#3f51b5'],
+                    minValue: 1,
+                    maxValue: 35
+                },
+                resolution: 'provinces',
+                backgroundColor: "#81d4fa",
+                width: 940,
+                height: 680
+            };
+
+            var chart = new google.visualization.GeoChart(document.getElementById('visualisation'));
+            google.visualization.events.addListener(chart, 'regionClick', function (event) {
+                const stateUrls = {
+                    'IN-WB': '/wb/',
+                    'IN-AP': '/ap/',
+                    'IN-AS': '/as/',
+                    'IN-AR': '/ar/',
+                    'IN-BR': '/br/',
+                    'IN-CT': '/ct/',
+                    'IN-GA': '/ga/',
+                    'IN-GJ': '/gj/',
+                    'IN-HP': '/hp/',
+                    'IN-HR': '/hr/',
+                    'IN-JH': '/jh/',
+                    'IN-KA': '/ka/',
+                    'IN-KL': '/kl/',
+                    'IN-MH': '/mh/',
+                    'IN-MN': '/mn/',
+                    'IN-MP': '/mp/',
+                    'IN-MZ': '/mz/',
+                    'IN-NL': '/nl/',
+                    'IN-OR': '/or/',
+                    'IN-PB': '/pb/',
+                    'IN-RJ': '/rj/',
+                    'IN-SK': '/sk/',
+                    'IN-TN': '/tn/',
+                    'IN-TG': '/tg/',
+                    'IN-TR': '/tr/',
+                    'IN-UP': '/up/',
+                    'IN-UT': '/ut/',
+                    'IN-AN': '/an/',
+                    'IN-CH': '/ch/',
+                    'IN-DL': '/dl/',
+                    'IN-LD': '/ld/',
+                    'IN-PY': '/py/',
+                    'IN-JK': '/jk/',
+                    'IN-ML': '/ml/'
+                };
+
+                const url = stateUrls[event.region];
+                if (url) {
+                    window.location.href = url;
+                }
+            });
+
+            chart.draw(data, options);
+        }
+    </script>
+    <style>
+        body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #81d4fa;
+}
+
+.main-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: calc(100vh - 80px); /* Adjust the height as needed */
+    padding-top: 80px; /* Adjust this value if the navbar height changes */
+    box-sizing: border-box;
+}
+
+.background-image {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    /* Ensure it stays behind the navbar */
+}
+
+#visualisation {
+    width: 60%;
+    height: auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    /* Optional: Adds shadow around the map */
+    background-color: rgba(255, 255, 255, 0.8);
+    /* Optional: Light background to improve map readability */
+    max-width: 940px; /* Limit the maximum width of the map */
+    margin: 0 auto; /* Center the map horizontally */
+    padding: 20px;
+}
+
+    </style>
+</head>
+
+<body>
+    {% include 'core/nav.html' %}
+    <img src="{% static 'core/img/features.jpg' %}" alt="Background Image" class="background-image">
+    <div class="main-content">
+        <div id="visualisation"></div>
+    </div>
+</body>
+
+</html>
